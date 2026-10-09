@@ -176,7 +176,9 @@ th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-s
     (() => {
   'use strict';
 
-  const DB_KEY = 'painterCorpDB_v1';
+  // NOTE: bumped from v1 to v2 so browsers holding the old 4-painter DB
+  // automatically re-seed with the new 24-painter catalogue.
+  const DB_KEY = 'painterCorpDB_v2';
   const SESSION_KEY = 'painterCorpSession_v1';
   const $ = (s) => document.querySelector(s);
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -198,41 +200,116 @@ th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-s
     };
     db.users.push({ id: 'u_admin', role: 'admin', name: 'Owner', email: 'admin@painter.corp', password: 'admin123', phone: '' });
     db.users.push({ id: 'u_c1', role: 'client', name: 'Demo Client', email: 'client@demo.com', password: 'demo123', phone: '+000 700 100 200', joined: now - 6 * day });
+    db.users.push({ id: 'u_c2', role: 'client', name: 'Sarah Nakato', email: 'sarah@demo.com', password: 'demo123', phone: '+000 700 200 300', joined: now - 14 * day });
+    db.users.push({ id: 'u_c3', role: 'client', name: 'Moses Okello', email: 'moses@demo.com', password: 'demo123', phone: '+000 700 300 400', joined: now - 3 * day });
+
     const painters = [
       { id: 'u_p1', name: 'Brightside Painters', email: 'bright@demo.com', phone: '+000 700 000 111', location: 'Kampala near City Square', specialties: 'Interior, Exterior', rate: 'From 50,000 UGX', bio: 'Family-run team with 12 years of experience painting homes and small offices. Clean work, fair prices.', available: true, status: 'approved' },
       { id: 'u_p2', name: 'Color Masters Ltd', email: 'colors@demo.com', phone: '+000 700 000 222', location: 'Namasuba opposite Freedom City', specialties: 'Commercial buildings, Exterior', rate: 'Quote per project', bio: 'We handle large commercial buildings, warehouses and apartment blocks with our own scaffolding crew.', available: true, status: 'approved' },
       { id: 'u_p3', name: 'Fresh Coat Studio', email: 'fresh@demo.com', phone: '+000 700 000 333', location: 'Nakawa opposite Capital Shoppers ltd', specialties: 'Interior, Decorative', rate: 'From 100,000 UGX', bio: 'Decorative finishes, murals and accent walls.', available: false, status: 'pending' },
       { id: 'u_p4', name: 'Quick Roller', email: 'roller@demo.com', phone: '+000 700 000 444', location: 'Bulenga', specialties: 'Fences, Gates', rate: 'From 10,000 UGX', bio: 'Fast and affordable fence and gate painting.', available: true, status: 'unpaid' },
+      { id: 'u_p5', name: 'Rainbow Brush Co.', email: 'rainbow@demo.com', phone: '+000 700 000 555', location: 'Kira Road, Kamwokya', specialties: 'Interior, Kids rooms', rate: 'From 60,000 UGX', bio: 'Bright, playful interiors for family homes and nurseries. We love colour.', available: true, status: 'approved' },
+      { id: 'u_p6', name: 'Elite Walls & Finishes', email: 'elite@demo.com', phone: '+000 700 000 666', location: 'Kololo, near Acacia Mall', specialties: 'Luxury interiors, Textured finishes', rate: 'From 150,000 UGX', bio: 'High-end decorative finishes, Venetian plaster and metallic accents for upmarket homes.', available: true, status: 'approved' },
+      { id: 'u_p7', name: 'Sunrise Painting Services', email: 'sunrise@demo.com', phone: '+000 700 000 777', location: 'Wakiso, Gayaza Road', specialties: 'Exterior, Roof coating', rate: 'Quote per project', bio: 'Exterior repaints and weather-proof roof coatings. We work all year round.', available: false, status: 'approved' },
+      { id: 'u_p8', name: 'ProCoat Contractors', email: 'procoat@demo.com', phone: '+000 700 000 888', location: 'Industrial Area, 7th Street', specialties: 'Industrial, Epoxy floors', rate: 'Quote per project', bio: 'Industrial coatings, epoxy floors and warehouse line marking for factories.', available: true, status: 'approved' },
+      { id: 'u_p9', name: 'Golden Roller Painters', email: 'golden@demo.com', phone: '+000 700 000 999', location: 'Bweyogerere', specialties: 'Interior, Exterior', rate: 'From 45,000 UGX', bio: 'New team on Painter Corp — competitive prices and quick turnaround.', available: true, status: 'unpaid' },
+      { id: 'u_p10', name: 'Summit Painting Group', email: 'summit@demo.com', phone: '+000 700 001 010', location: 'Muyenga, Tank Hill', specialties: 'Residential, Exterior', rate: 'From 70,000 UGX', bio: 'Hillside villas and apartment repaints. Free site visit anywhere in Kampala.', available: true, status: 'approved' },
+      { id: 'u_p11', name: 'Urban Finish Painters', email: 'urbanfinish@demo.com', phone: '+000 700 001 111', location: 'Bukoto, Kisaasi Road', specialties: 'Interior, Office fit-outs', rate: 'From 55,000 UGX', bio: 'Fast office and shop fit-out painting, done after hours if needed.', available: true, status: 'pending' },
+      { id: 'u_p12', name: 'Classic Coat Painters', email: 'classic@demo.com', phone: '+000 700 001 212', location: 'Entebbe Road, Kajjansi', specialties: 'Exterior, Fences', rate: 'From 35,000 UGX', bio: 'Traditional, reliable painting for homes along Entebbe Road.', available: false, status: 'approved' },
+      { id: 'u_p13', name: 'Prime Paint Solutions', email: 'primepaint@demo.com', phone: '+000 700 001 313', location: 'Ntinda, near Capital Shoppers', specialties: 'Commercial, Interior', rate: 'Quote per project', bio: 'Supermarkets, schools and clinics. We work around your opening hours.', available: true, status: 'approved' },
+      { id: 'u_p14', name: 'EcoPaint Uganda', email: 'ecopaint@demo.com', phone: '+000 700 001 414', location: 'Bugolobi, Spring Road', specialties: 'Eco-friendly, Interior', rate: 'From 80,000 UGX', bio: 'Low-VOC, child-safe paints for homes, clinics and schools.', available: true, status: 'approved' },
+      { id: 'u_p15', name: 'Delta Decorators', email: 'delta@demo.com', phone: '+000 700 001 515', location: 'Masaka Road, Ndeeba', specialties: 'Decorative, Wallpaper', rate: 'From 90,000 UGX', bio: 'Wallpaper hanging, wall textures and decorative feature walls.', available: true, status: 'unpaid' },
+      { id: 'u_p16', name: 'Skyline Painting Crew', email: 'skyline@demo.com', phone: '+000 700 001 616', location: 'Najjera, Buwate', specialties: 'High-rise, Exterior', rate: 'Quote per project', bio: 'Rope-access and scaffolding crews for tall buildings and apartment blocks.', available: true, status: 'approved' },
+      { id: 'u_p17', name: 'Artistic Touch Painters', email: 'artistic@demo.com', phone: '+000 700 001 717', location: 'Nsambya, Ggaba Road', specialties: 'Murals, Decorative', rate: 'From 120,000 UGX', bio: 'Hand-painted murals, logos and signage for shops, cafés and schools.', available: false, status: 'approved' },
+      { id: 'u_p18', name: 'Solid Coat Services', email: 'solidcoat@demo.com', phone: '+000 700 001 818', location: 'Kawempe, Bombo Road', specialties: 'Interior, Exterior', rate: 'From 40,000 UGX', bio: 'Straightforward, honest painting work. Free quotes on site.', available: true, status: 'pending' },
+      { id: 'u_p19', name: 'Metro Painters Hub', email: 'metro@demo.com', phone: '+000 700 001 919', location: 'Kampala Central, William Street', specialties: 'Commercial, Interior', rate: 'Quote per project', bio: 'A network of 20 vetted painters for large jobs with tight deadlines.', available: true, status: 'approved' },
+      { id: 'u_p20', name: 'Village Brush Painters', email: 'village@demo.com', phone: '+000 700 002 020', location: 'Matugga, Wakiso', specialties: 'Rural homes, Fences', rate: 'From 25,000 UGX', bio: 'Affordable painting for village homes, schools and churches.', available: true, status: 'approved' },
+      { id: 'u_p21', name: 'Royal Finish Painters', email: 'royal@demo.com', phone: '+000 700 002 121', location: 'Bunga, Ggaba Road', specialties: 'Luxury interiors', rate: 'From 200,000 UGX', bio: 'Premium finishes for luxury homes and hotels.', available: false, status: 'dismissed' },
+      { id: 'u_p22', name: 'Crestline Painting Co.', email: 'crestline@demo.com', phone: '+000 700 002 222', location: 'Kyanja, Kisaasi', specialties: 'Residential, Exterior', rate: 'From 65,000 UGX', bio: 'New builds and renovations. We prep surfaces properly before painting.', available: true, status: 'approved' },
+      { id: 'u_p23', name: 'Bright Future Painters', email: 'brightfuture@demo.com', phone: '+000 700 002 323', location: 'Seeta, Mukono', specialties: 'Interior, Exterior', rate: 'From 38,000 UGX', bio: 'Young crew, modern equipment, friendly service.', available: true, status: 'unpaid' },
+      { id: 'u_p24', name: 'Harmony Paint Works', email: 'harmony@demo.com', phone: '+000 700 002 424', location: 'Lubowa, Entebbe Road', specialties: 'Interior, Colour consulting', rate: 'From 75,000 UGX', bio: 'We help you choose a colour scheme, then paint it perfectly.', available: false, status: 'approved' },
     ];
-    painters.forEach((p, i) => db.users.push({ ...p, role: 'painter', password: 'demo123', joined: now - (10 - i) * day }));
+    painters.forEach((p, i) => db.users.push({ ...p, role: 'painter', password: 'demo123', joined: now - (30 - i) * day }));
 
     const mkWork = (pid, title, desc, a, b, ago) => db.works.push({ id: 'w_' + uid(), painterId: pid, title, desc, image: art(a, b, title), createdAt: now - ago * day });
+
     mkWork('u_p1', 'Family Home Exterior', 'Two-storey house, weather-proof finish.', '#e4572e', '#f2a65a', 4);
     mkWork('u_p1', 'Modern Living Room', 'Soft grey walls with a white ceiling.', '#5c6b8a', '#9fb1d1', 3);
     mkWork('u_p2', 'Apartment Block', '6-floor apartment building repaint.', '#2a6f97', '#61a5c2', 5);
     mkWork('u_p2', 'Warehouse Facade', 'Industrial coating, 1,200 m².', '#3d5a40', '#7fa37f', 2);
     mkWork('u_p3', 'Accent Wall Mural', 'Hand-painted botanical mural.', '#8e44ad', '#d2a4e8', 1);
+    mkWork('u_p5', 'Nursery Makeover', 'Pastel walls with a cloud mural.', '#f7a8b8', '#ffd9e0', 6);
+    mkWork('u_p5', 'Kitchen & Dining', 'Washable satin finish, two tones.', '#2f8f83', '#7fd0c6', 2);
+    mkWork('u_p6', 'Master Bedroom Suite', 'Textured feature wall with gold accents.', '#6b4a7a', '#c9a7d6', 7);
+    mkWork('u_p6', 'Hotel Corridor', 'Durable scuff-resistant finish.', '#8a6b3f', '#d9bb8b', 3);
+    mkWork('u_p7', 'Bungalow Exterior', 'Full exterior repaint, three coats.', '#b5651d', '#e8b07a', 9);
+    mkWork('u_p8', 'Factory Floor Coating', 'Epoxy floor, 2,000 m².', '#4a4f57', '#9aa1ab', 8);
+    mkWork('u_p8', 'Warehouse Line Marking', 'Safety lines and bay numbering.', '#c9a227', '#f0dd8a', 4);
+    mkWork('u_p10', 'Hillside Villa', 'Exterior plus boundary wall.', '#3a6ea5', '#8ab6dd', 5);
+    mkWork('u_p10', 'Apartment Common Areas', 'Stairwells and corridors.', '#5a5f7a', '#a9aec9', 2);
+    mkWork('u_p11', 'Office Fit-out', 'Open-plan office, 400 m².', '#2b7a78', '#8fd4d1', 3);
+    mkWork('u_p12', 'Boundary Wall & Gate', 'Masonry paint, 180 metres.', '#7a5230', '#c49a6c', 10);
+    mkWork('u_p13', 'Supermarket Interior', 'Ceiling, walls and pillars.', '#c1440e', '#f0a07a', 6);
+    mkWork('u_p13', 'Primary School Block', 'Classrooms repainted in a week.', '#1f7a4d', '#8ed4ab', 2);
+    mkWork('u_p14', 'Clinic Interior', 'Low-VOC, washable, child-safe.', '#2e9d5b', '#a8e6c0', 4);
+    mkWork('u_p16', '9-Storey Facade', 'Rope-access exterior repaint.', '#26456e', '#7f9fc9', 7);
+    mkWork('u_p16', 'Apartment Towers', 'Two blocks, 14 floors total.', '#6c757d', '#bfc5cc', 3);
+    mkWork('u_p17', 'Café Mural', 'Tropical mural on a 6 m wall.', '#e07a5f', '#f6c6b5', 5);
+    mkWork('u_p18', 'Rental Units Repaint', 'Four units, quick turnaround.', '#4f6d7a', '#a9c6d1', 4);
+    mkWork('u_p19', 'Shopping Arcade', 'Common areas and shop fronts.', '#8e6c3f', '#dcc39a', 6);
+    mkWork('u_p19', 'Corporate Offices', 'After-hours painting, three nights.', '#3d3d6b', '#9a9ac9', 2);
+    mkWork('u_p20', 'Village School', 'Three classroom blocks.', '#b07d3a', '#e6c79a', 11);
+    mkWork('u_p21', 'Boutique Hotel Lobby', 'Decorative plaster and gold leaf.', '#7d5a2f', '#e0c48a', 12);
+    mkWork('u_p22', 'New Build Handover', 'Full interior, five bedrooms.', '#38618c', '#96b8dd', 5);
+    mkWork('u_p22', 'Duplex Exterior', 'Weather shield in two tones.', '#4a7856', '#a3c9a8', 1);
+    mkWork('u_p24', 'Colour Consult + Paint', 'Whole-house scheme and paint.', '#a4508b', '#e0a8d1', 3);
 
     const pay = (type, payerId, painterId, amount, method, detail, ago) => {
       const p = { id: 'pay_' + uid(), type, payerId, painterId, amount, method, detail, ref: 'PC-' + uid().toUpperCase(), status: 'received', createdAt: now - ago * day };
       db.payments.push(p); return p;
     };
-    ['u_p1', 'u_p2', 'u_p3'].forEach((id, i) => pay('painter_fee', id, id, 30, i % 2 ? 'mobile' : 'card', i % 2 ? 'Mobile money •••• 0222' : 'Visa •••• 4242', 8 - i));
-    const bp = pay('booking', 'u_c1', 'u_p1', 10, 'card', 'Visa •••• 4242', 1);
-    db.bookings.push({ id: 'b_' + uid(), clientId: 'u_c1', painterId: 'u_p1', jobType: 'Interior', location: 'Apartment 4B, Central Street', details: 'Two bedrooms and a hallway, about 90 m².', fee: 10, paymentId: bp.id, createdAt: now - day });
+
+    // Every painter that is not "unpaid" has paid the listing fee.
+    db.users.filter((u) => u.role === 'painter' && u.status !== 'unpaid').forEach((p, i) => {
+      const tail = String(1000 + i * 7).slice(-4);
+      pay('painter_fee', p.id, p.id, db.settings.painterFee, i % 2 ? 'mobile' : 'card',
+        i % 2 ? `Mobile money •••• ${tail}` : `Visa •••• ${tail}`, 1 + (i * 3) % 45);
+    });
+
+    const mkBooking = (clientId, painterId, jobType, location, details, ago) => {
+      const pmt = pay('booking', clientId, painterId, db.settings.bookingFee, 'card', 'Visa •••• 4242', ago);
+      db.bookings.push({ id: 'b_' + uid(), clientId, painterId, jobType, location, details, fee: pmt.amount, paymentId: pmt.id, createdAt: now - ago * day });
+    };
+    mkBooking('u_c1', 'u_p1', 'Interior', 'Apartment 4B, Central Street', 'Two bedrooms and a hallway, about 90 m².', 1);
+    mkBooking('u_c1', 'u_p5', 'Interior', 'House 12, Kira Road', 'Kids room and living room, pastel colours.', 5);
+    mkBooking('u_c2', 'u_p2', 'Commercial building', 'Shop on Kampala Road', 'Ground floor shop front and interior.', 8);
+    mkBooking('u_c2', 'u_p16', 'Exterior', 'Apartment block, Najjera', 'Two-storey exterior, scaffolding needed.', 3);
+    mkBooking('u_c3', 'u_p10', 'Exterior', 'Villa in Muyenga', 'Full exterior and boundary wall.', 2);
+
     return db;
   }
 
   let db = load();
+
   function load() {
+    // If a stored DB exists but was created by an older seed (fewer painters),
+    // discard it and re-seed so new demo data always shows up.
     try {
       const raw = localStorage.getItem(DB_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (e) {}
+      if (raw) {
+        const stored = JSON.parse(raw);
+        const storedPainters = (stored.users || []).filter((u) => u.role === 'painter').length;
+        const expectedPainters = 24; // keep in sync with the seed() painter list
+        if (storedPainters >= expectedPainters) return stored;
+        // otherwise fall through and re-seed
+      }
+    } catch (e) { /* fall through to re-seed */ }
+
     const fresh = seed();
     try { localStorage.setItem(DB_KEY, JSON.stringify(fresh)); } catch (e) {}
     return fresh;
   }
+
   function save() {
     try { localStorage.setItem(DB_KEY, JSON.stringify(db)); return true; }
     catch (e) { toast('Browser storage is full — try smaller or fewer images.', true); return false; }
@@ -335,8 +412,9 @@ th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-s
   function renderGrid() { const g = $('#grid'); if (g) g.innerHTML = gridHTML(); }
 
   function viewBrowse() {
+    const approved = db.users.filter((u) => u.role === 'painter' && u.status === 'approved').length;
     return `
-      <div class="hero"><h1>Find a painter</h1><p>Browse approved painters, check their past work, and hire the right one.</p></div>
+      <div class="hero"><h1>Find a painter</h1><p>Browse ${approved} approved painters, check their past work, and hire the right one.</p></div>
       <div class="card row" style="align-items:end">
         <div><label style="margin-top:0">Search</label><input id="q" placeholder="Name, location or specialty" value="${esc(S.q)}"></div>
         <div style="flex:0 0 auto"><label style="margin-top:0"><input type="checkbox" id="availOnly" style="width:auto" ${S.availOnly ? 'checked' : ''}> Available only</label></div>
@@ -499,14 +577,14 @@ th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-s
             <button class="btn small bad" data-act="dismiss" data-id="${p.id}">Dismiss</button></div></div>`).join('') : '<p class="muted">Nobody is waiting.</p>'}
         </div>`;
     } else if (S.atab === 'painters') {
-      body = `<div class="card table-wrap"><h2>Painters</h2><table>
+      body = `<div class="card table-wrap"><h2>Painters (${painters.length})</h2><table>
         <tr><th>Name</th><th>Contact</th><th>Fee paid</th><th>Status</th><th>Works</th><th>Actions</th></tr>
         ${painters.map((p) => {
           const paid = db.payments.some((x) => x.type === 'painter_fee' && x.painterId === p.id);
           const acts = [`<button class="btn small secondary" data-act="open-painter" data-id="${p.id}">View</button>`];
           if (p.status !== 'approved' && paid) acts.push(`<button class="btn small ok" data-act="approve" data-id="${p.id}">${p.status === 'dismissed' ? 'Reinstate' : 'Approve'}</button>`);
           if (p.status !== 'dismissed') acts.push(`<button class="btn small bad" data-act="dismiss" data-id="${p.id}">Dismiss</button>`);
-          return `<tr><td><strong>${esc(p.name)}</strong></td><td>${esc(p.email)}<br><span class="muted">${esc(p.phone)}</span></td>
+          return `<tr><td><strong>${esc(p.name)}</strong><br><span class="muted">${esc(p.location || '—')}</span></td><td>${esc(p.email)}<br><span class="muted">${esc(p.phone)}</span></td>
             <td>${paid ? '<span class="badge ok">Paid</span>' : '<span class="badge">Not paid</span>'}</td>
             <td>${statusBadge(p.status)}</td><td>${painterWorks(p.id).length}</td><td>${acts.join(' ')}</td></tr>`;
         }).join('')}
