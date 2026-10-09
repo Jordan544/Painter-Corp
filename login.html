@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Painter Company</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <section class="intro">
+    <h2 class="login-view">Painter's Corp</h2>
+    <p class="login-string">Please enter your credentials to login</p>
+  </section>
+  <section class="my-fields">
+    <form action="" method="post" id="loginForm">
+      <div class="myinputs">
+        <label for="username">Username</label>
+        <input type="text" name="" id="username" required>
+      </div>
+      <div class="myinputs">
+        <label for="password">Password</label>
+        <input type="password" name="" id="password" required>
+      </div>
+      <div class="myinputs">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const usernameInput = document.getElementById('username').value;
+      const passwordInput = document.getElementById('password').value;
+      
+      sessionStorage.setItem('loggedUser', usernameInput);
+      if(usernameInput == 'Admin' && passwordInput === '123456'){
+        window.location.href='/admin-dashboard.html';
+      }
+      else {
+      window.location.href='/dashboard.html';
+      }
+
+    })
+  </script>
+</body>
+</html>

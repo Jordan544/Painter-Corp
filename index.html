@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Painter Corp</title>
+  <style>
+    :root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --ink: #1d2433;
+  --muted: #6b7385;
+  --brand: #e4572e;
+  --brand-dark: #c4431f;
+  --accent: #2a6f97;
+  --ok: #2e9d5b;
+  --warn: #d9941a;
+  --bad: #c93a3a;
+  --line: #e3e6ee;
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.hidden { display: none !important; }
+
+.topbar {
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.brand { font-weight: 700; font-size: 1.25rem; cursor: pointer; }
+nav { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+nav button, nav span { font-size: .9rem; }
+nav span { color: #c9cfdd; margin-right: 6px; }
+
+main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+.footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 16px; }
+
+h1, h2, h3 { margin: 0 0 12px; }
+h1 { font-size: 1.7rem; }
+p.lead { color: var(--muted); margin-top: 0; }
+
+.btn {
+  background: var(--brand);
+  color: #fff;
+  border: 0;
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .92rem;
+  font-weight: 600;
+}
+.btn:hover { background: var(--brand-dark); }
+.btn.secondary { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+nav .btn.secondary { color: #fff; border-color: #4a5370; }
+.btn.secondary:hover { background: rgba(120,130,160,.15); }
+.btn.ok { background: var(--ok); }
+.btn.bad { background: var(--bad); }
+.btn.small { padding: 6px 11px; font-size: .82rem; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 18px;
+}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.painter-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.painter-card .cover { height: 150px; background-color: #e4572e; background-size: cover; background-position: center; }
+.painter-card .body { padding: 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.painter-card .name { font-weight: 700; font-size: 1.05rem; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  background: #eceff6;
+  color: var(--muted);
+}
+.badge.ok { background: #e1f4e8; color: var(--ok); }
+.badge.warn { background: #fdf0d6; color: var(--warn); }
+.badge.bad { background: #fbe3e3; color: var(--bad); }
+.muted { color: var(--muted); font-size: .88rem; }
+
+label { display: block; font-weight: 600; font-size: .85rem; margin: 12px 0 5px; }
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+textarea { min-height: 90px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 2px solid #f1b9a6; border-color: var(--brand); }
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+.row > * { flex: 1; min-width: 160px; }
+
+.auth-wrap { max-width: 420px; margin: 20px auto; }
+.tabs { display: flex; gap: 6px; margin-bottom: 18px; flex-wrap: wrap; }
+.tab { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-weight: 600; font-size: .88rem; }
+.tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+.table-wrap { overflow-x: auto; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 18px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.stat .num { font-size: 1.7rem; font-weight: 800; }
+.stat .lbl { color: var(--muted); font-size: .82rem; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.gallery .shot { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.gallery img { width: 100%; height: 120px; object-fit: cover; display: block; }
+.gallery .cap { padding: 6px 8px; font-size: .8rem; }
+.gallery .del { position: absolute; top: 5px; right: 5px; }
+
+.contact-box { background: #e9f6ee; border: 1px solid #bfe3cc; border-radius: 10px; padding: 14px; }
+.locked-box { background: #fdf4e3; border: 1px dashed #e5b858; border-radius: 10px; padding: 14px; }
+
+.pay-methods { display: flex; gap: 10px; margin: 8px 0; }
+.pay-methods .tab { flex: 1; text-align: center; }
+
+.modal { position: fixed; inset: 0; background: rgba(20,24,36,.55); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 50; overflow-y: auto; }
+.modal-card { background: #fff; border-radius: 14px; padding: 22px; width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; }
+.toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 10px; z-index: 99; font-size: .9rem; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+.toast.error { background: var(--bad); }
+
+.hint { background: #eef4fa; border: 1px solid #cfe0ef; color: #2a4a66; padding: 10px 12px; border-radius: 8px; font-size: .84rem; margin-top: 14px; }
+.hero { background: #2a3550; color: #fff; border-radius: 16px; padding: 28px 24px; margin-bottom: 22px; }
+.hero p { color: #d0d6ea; margin: 6px 0 0; }
+.back { margin-bottom: 14px; }
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.35rem; }
+  .topbar { padding: 10px 12px; }
+}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" id="brand">Painter Corp</div>
+    <nav id="nav"></nav>
+  </header>
+
+  <main id="app"></main>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="modal" class="modal hidden">
+    <div class="modal-card" id="modalCard"></div>
+  </div>
+
+  <footer class="footer">Painter Corp — test prototype. Payments are simulated; data is stored in this browser only.</footer>
+
+  <script>
+    (() => {
+  'use strict';
+
+  const DB_KEY = 'painterCorpDB_v1';
+  const SESSION_KEY = 'painterCorpSession_v1';
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const uid = () => Math.random().toString(36).slice(2, 10);
+  const money = (n) => '$' + Number(n || 0).toFixed(2);
+  const fmtDate = (t) => new Date(t).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+
+  function art(a, b, label) {
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='600' height='400' fill='${a}'/><rect x='170' y='150' width='260' height='170' fill='rgba(255,255,255,.88)'/><polygon points='150,150 300,70 450,150' fill='rgba(0,0,0,.3)'/><rect x='275' y='230' width='50' height='90' fill='${b}'/><text x='300' y='365' font-size='26' text-anchor='middle' fill='white' font-family='sans-serif'>${label}</text></svg>`;
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+
+  function seed() {
+    const now = Date.now();
+    const day = 86400000;
+    const db = {
+      settings: { painterFee: 30, bookingFee: 10 },
+      users: [], works: [], payments: [], bookings: [],
+    };
+    db.users.push({ id: 'u_admin', role: 'admin', name: 'Owner', email: 'admin@painter.corp', password: 'admin123', phone: '' });
+    db.users.push({ id: 'u_c1', role: 'client', name: 'Demo Client', email: 'client@demo.com', password: 'demo123', phone: '+000 700 100 200', joined: now - 6 * day });
+    const painters = [
+      { id: 'u_p1', name: 'Brightside Painters', email: 'bright@demo.com', phone: '+000 700 000 111', location: 'Downtown', specialties: 'Interior, Exterior', rate: 'From $15/hr', bio: 'Family-run team with 12 years of experience painting homes and small offices. Clean work, fair prices.', available: true, status: 'approved' },
+      { id: 'u_p2', name: 'Color Masters Ltd', email: 'colors@demo.com', phone: '+000 700 000 222', location: 'North District', specialties: 'Commercial buildings, Exterior', rate: 'Quote per project', bio: 'We handle large commercial buildings, warehouses and apartment blocks with our own scaffolding crew.', available: true, status: 'approved' },
+      { id: 'u_p3', name: 'Fresh Coat Studio', email: 'fresh@demo.com', phone: '+000 700 000 333', location: 'East Side', specialties: 'Interior, Decorative', rate: 'From $20/hr', bio: 'Decorative finishes, murals and accent walls.', available: false, status: 'pending' },
+      { id: 'u_p4', name: 'Quick Roller', email: 'roller@demo.com', phone: '+000 700 000 444', location: 'West End', specialties: 'Fences, Gates', rate: 'From $10/hr', bio: 'Fast and affordable fence and gate painting.', available: true, status: 'unpaid' },
+    ];
+    painters.forEach((p, i) => db.users.push({ ...p, role: 'painter', password: 'demo123', joined: now - (10 - i) * day }));
+
+    const mkWork = (pid, title, desc, a, b, ago) => db.works.push({ id: 'w_' + uid(), painterId: pid, title, desc, image: art(a, b, title), createdAt: now - ago * day });
+    mkWork('u_p1', 'Family Home Exterior', 'Two-storey house, weather-proof finish.', '#e4572e', '#f2a65a', 4);
+    mkWork('u_p1', 'Modern Living Room', 'Soft grey walls with a white ceiling.', '#5c6b8a', '#9fb1d1', 3);
+    mkWork('u_p2', 'Apartment Block', '6-floor apartment building repaint.', '#2a6f97', '#61a5c2', 5);
+    mkWork('u_p2', 'Warehouse Facade', 'Industrial coating, 1,200 m².', '#3d5a40', '#7fa37f', 2);
+    mkWork('u_p3', 'Accent Wall Mural', 'Hand-painted botanical mural.', '#8e44ad', '#d2a4e8', 1);
+
+    const pay = (type, payerId, painterId, amount, method, detail, ago) => {
+      const p = { id: 'pay_' + uid(), type, payerId, painterId, amount, method, detail, ref: 'PC-' + uid().toUpperCase(), status: 'received', createdAt: now - ago * day };
+      db.payments.push(p); return p;
+    };
+    ['u_p1', 'u_p2', 'u_p3'].forEach((id, i) => pay('painter_fee', id, id, 30, i % 2 ? 'mobile' : 'card', i % 2 ? 'Mobile money •••• 0222' : 'Visa •••• 4242', 8 - i));
+    const bp = pay('booking', 'u_c1', 'u_p1', 10, 'card', 'Visa •••• 4242', 1);
+    db.bookings.push({ id: 'b_' + uid(), clientId: 'u_c1', painterId: 'u_p1', jobType: 'Interior', location: 'Apartment 4B, Central Street', details: 'Two bedrooms and a hallway, about 90 m².', fee: 10, paymentId: bp.id, createdAt: now - day });
+    return db;
+  }
+
+  let db = load();
+  function load() {
+    try {
+      const raw = localStorage.getItem(DB_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    const fresh = seed();
+    try { localStorage.setItem(DB_KEY, JSON.stringify(fresh)); } catch (e) {}
+    return fresh;
+  }
+  function save() {
+    try { localStorage.setItem(DB_KEY, JSON.stringify(db)); return true; }
+    catch (e) { toast('Browser storage is full — try smaller or fewer images.', true); return false; }
+  }
+  const userById = (id) => db.users.find((u) => u.id === id);
+  const sessionUser = () => userById(localStorage.getItem(SESSION_KEY));
+
+  const S = { view: 'auth', param: null, authTab: 'login', ptab: 'overview', atab: 'overview', q: '', availOnly: false };
+
+  function defaultView(u) {
+    if (!u) return 'auth';
+    return { admin: 'admin', painter: 'pdash', client: 'browse' }[u.role];
+  }
+  function go(view, param = null) {
+    S.view = view; S.param = param; render(); window.scrollTo(0, 0);
+  }
+
+  let toastTimer;
+  function toast(msg, isError = false) {
+    const t = $('#toast');
+    t.textContent = msg; t.classList.toggle('error', isError); t.classList.remove('hidden');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.add('hidden'), 3200);
+  }
+  function showModal(html) { $('#modalCard').innerHTML = html; $('#modal').classList.remove('hidden'); }
+  function closeModal() { $('#modal').classList.add('hidden'); $('#modalCard').innerHTML = ''; payCtx = null; }
+
+  function statusBadge(s) {
+    const m = { approved: ['ok', 'Approved'], pending: ['warn', 'Pending approval'], unpaid: ['', 'Fee unpaid'], dismissed: ['bad', 'Dismissed'] };
+    const [c, t] = m[s] || ['', s];
+    return `<span class="badge ${c}">${t}</span>`;
+  }
+  const painterWorks = (pid) => db.works.filter((w) => w.painterId === pid).sort((a, b) => b.createdAt - a.createdAt);
+  const hasBooked = (clientId, painterId) => db.bookings.some((b) => b.clientId === clientId && b.painterId === painterId);
+
+  function viewAuth() {
+    const login = `
+      <form data-form="login">
+        <label>Email</label><input name="email" type="email" required autocomplete="username">
+        <label>Password</label><input name="password" type="password" required autocomplete="current-password">
+        <p><button class="btn" style="width:100%">Log in</button></p>
+      </form>`;
+    const register = `
+      <form data-form="register">
+        <label>I want to…</label>
+        <select name="role">
+          <option value="client">Hire a painter</option>
+          <option value="painter">List my painting business</option>
+        </select>
+        <label>Full name / business name</label><input name="name" required>
+        <label>Email</label><input name="email" type="email" required>
+        <label>Phone number</label><input name="phone" required placeholder="+000 700 000 000">
+        <label>Password (min 6 characters)</label><input name="password" type="password" minlength="6" required>
+        <p><button class="btn" style="width:100%">Create account</button></p>
+      </form>`;
+    return `
+      <div class="auth-wrap">
+        <div class="hero"><h1>Painter Corp</h1><p>Find trusted painters for your building or space — or list your painting business.</p></div>
+        <div class="card">
+          <div class="tabs">
+            <button class="tab ${S.authTab === 'login' ? 'active' : ''}" data-act="auth-tab" data-v="login">Log in</button>
+            <button class="tab ${S.authTab === 'register' ? 'active' : ''}" data-act="auth-tab" data-v="register">Sign up</button>
+          </div>
+          ${S.authTab === 'login' ? login : register}
+          <div class="hint">
+            <strong>Demo logins</strong><br>
+            Admin: admin@painter.corp / admin123<br>
+            Painter: bright@demo.com / demo123 (approved)<br>
+            Painter: roller@demo.com / demo123 (unpaid)<br>
+            Client: client@demo.com / demo123<br>
+            <a href="#" data-act="reset">Reset all demo data</a>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function painterCard(p) {
+    const works = painterWorks(p.id);
+    const cover = works[0] ? `style="background-image:url('${works[0].image}')"` : '';
+    return `
+      <div class="card painter-card">
+        <div class="cover" ${cover}></div>
+        <div class="body">
+          <div class="name">${esc(p.name)}</div>
+          <div class="muted"><i class="fa-solid fa-location-dot"></i> ${esc(p.location || 'Location not set')}</div>
+          <div class="muted"><i class="fa-solid fa-paint-brush"></i> ${esc(p.specialties || '—')}</div>
+          <div><span class="badge ${p.available ? 'ok' : 'warn'}">${p.available ? 'Available' : 'Busy'}</span> <span class="muted">${esc(p.rate || '')}</span></div>
+          <div class="muted">${works.length} project${works.length === 1 ? '' : 's'} posted</div>
+          <div style="margin-top:auto"><button class="btn small" data-act="open-painter" data-id="${p.id}">View work & hire</button></div>
+        </div>
+      </div>`;
+  }
+
+  function gridHTML() {
+    const q = S.q.trim().toLowerCase();
+    const list = db.users.filter((u) => u.role === 'painter' && u.status === 'approved')
+      .filter((u) => !S.availOnly || u.available)
+      .filter((u) => !q || [u.name, u.location, u.specialties].join(' ').toLowerCase().includes(q));
+    return list.length ? list.map(painterCard).join('') : '<p class="muted">No painters match your search.</p>';
+  }
+  function renderGrid() { const g = $('#grid'); if (g) g.innerHTML = gridHTML(); }
+
+  function viewBrowse() {
+    return `
+      <div class="hero"><h1>Find a painter</h1><p>Browse approved painters, check their past work, and hire the right one.</p></div>
+      <div class="card row" style="align-items:end">
+        <div><label style="margin-top:0">Search</label><input id="q" placeholder="Name, location or specialty" value="${esc(S.q)}"></div>
+        <div style="flex:0 0 auto"><label style="margin-top:0"><input type="checkbox" id="availOnly" style="width:auto" ${S.availOnly ? 'checked' : ''}> Available only</label></div>
+      </div>
+      <div class="grid" id="grid">${gridHTML()}</div>`;
+  }
+
+  function viewPainter(id) {
+    const me = sessionUser();
+    const p = userById(id);
+    if (!p) return '<p>Painter not found.</p>';
+    const works = painterWorks(id);
+    const unlocked = me.role === 'admin' || me.id === id || hasBooked(me.id, id);
+    const fee = db.settings.bookingFee;
+
+    let contactBlock;
+    if (unlocked) {
+      contactBlock = `
+        <div class="contact-box"><strong><i class="fa-solid fa-circle-check"></i> Contact details</strong><br>
+          📞 ${esc(p.phone)}<br>✉️ ${esc(p.email)}<br><i class="fa-solid fa-location-dot"></i> ${esc(p.location || '—')}</div>`;
+    } else {
+      contactBlock = `
+        <div class="locked-box">🔒 Contact details are hidden. Tell us about your job and pay the ${money(fee)} service fee to unlock ${esc(p.name)}'s phone and email.</div>
+        <form data-form="hire" data-id="${p.id}">
+          <label>Type of job</label>
+          <select name="jobType"><option>Interior</option><option>Exterior</option><option>Commercial building</option><option>Fence / gate</option><option>Other</option></select>
+          <label>Building / place location</label><input name="location" required placeholder="Address or area">
+          <label>Details</label><textarea name="details" required placeholder="Size, number of rooms, preferred dates…"></textarea>
+          <p><button class="btn">Pay ${money(fee)} & unlock contact</button></p>
+        </form>`;
+    }
+
+    const gallery = works.length
+      ? `<div class="gallery">${works.map((w) => `
+          <div class="shot"><img src="${w.image}" alt="${esc(w.title)}" data-act="zoom" data-id="${w.id}" style="cursor:zoom-in"><div class="cap"><strong>${esc(w.title)}</strong></div></div>`).join('')}</div>`
+      : '<p class="muted">No work posted yet.</p>';
+
+    return `
+      <button class="btn secondary small back" data-act="back">← Back</button>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <div><h1>${esc(p.name)}</h1>
+            <div class="muted"><i class="fa-solid fa-location-dot"></i> ${esc(p.location || '—')} · <i class="fa-solid fa-paint-brush"></i> ${esc(p.specialties || '—')} · ${esc(p.rate || '')}</div></div>
+          <div>${statusBadge(p.status)} <span class="badge ${p.available ? 'ok' : 'warn'}">${p.available ? 'Available' : 'Busy'}</span></div>
+        </div>
+        <p>${esc(p.bio || '')}</p>
+      </div>
+      <div class="card"><h2>Past work</h2>${gallery}</div>
+      <div class="card"><h2>Hire ${esc(p.name)}</h2>${contactBlock}</div>`;
+  }
+
+  function viewBookings() {
+    const me = sessionUser();
+    const mine = db.bookings.filter((b) => b.clientId === me.id).sort((a, b) => b.createdAt - a.createdAt);
+    const rows = mine.map((b) => {
+      const p = userById(b.painterId);
+      return `<div class="card">
+        <strong>${esc(p?.name || 'Painter')}</strong> <span class="muted">· ${fmtDate(b.createdAt)} · paid ${money(b.fee)}</span>
+        <p class="muted" style="margin:6px 0">${esc(b.jobType)} — ${esc(b.location)}<br>${esc(b.details)}</p>
+        <div class="contact-box"><i class="fa-solid fa-phone"></i> ${esc(p?.phone)} · <i class="fa-solid fa-envelope"></i> ${esc(p?.email)}</div>
+      </div>`;
+    }).join('');
+    return `<h1>My bookings</h1><p class="lead">Painters you've paid to contact.</p>${rows || '<p class="muted">No bookings yet.</p>'}`;
+  }
+
+  function viewPainterDash() {
+    const me = sessionUser();
+    const tabs = [['overview', 'Overview & profile'], ['portfolio', 'My work'], ['leads', 'Job requests']];
+    let body = '';
+
+    if (S.ptab === 'overview') {
+      let statusBox = '';
+      if (me.status === 'unpaid') {
+        statusBox = `<div class="locked-box"><strong>Get listed on Painter Corp</strong><br>Pay the one-time listing fee of <strong>${money(db.settings.painterFee)}</strong> (card or mobile money) to apply for a place. The admin will then review and approve your profile.<p><button class="btn" data-act="pay-listing">Pay ${money(db.settings.painterFee)} listing fee</button></p></div>`;
+      } else if (me.status === 'pending') {
+        statusBox = `<div class="locked-box"><i class="fa-solid fa-clock"></i> Fee received. Waiting for the admin to approve your profile. You can already prepare your profile and portfolio.</div>`;
+      } else if (me.status === 'approved') {
+        statusBox = `<div class="contact-box"><i class="fa-solid fa-circle-check"></i> You're live! Clients can find you and see your work.</div>`;
+      } else {
+        statusBox = `<div class="locked-box" style="background:#fbe3e3;border-color:#e8a5a5"><i class="fa-solid fa-times-circle"></i> The admin has dismissed your listing. Please contact Painter Corp support.</div>`;
+      }
+      body = `
+        <div class="card"><h2>Status ${statusBadge(me.status)}</h2>${statusBox}</div>
+        <div class="card"><h2>Profile</h2>
+          <form data-form="profile">
+            <div class="row">
+              <div><label>Business name</label><input name="name" value="${esc(me.name)}" required></div>
+              <div><label>Phone</label><input name="phone" value="${esc(me.phone)}" required></div>
+            </div>
+            <div class="row">
+              <div><label>Location / area served</label><input name="location" value="${esc(me.location || '')}"></div>
+              <div><label>Rate</label><input name="rate" value="${esc(me.rate || '')}" placeholder="e.g. From $15/hr"></div>
+            </div>
+            <label>Specialties</label><input name="specialties" value="${esc(me.specialties || '')}" placeholder="Interior, Exterior, Commercial…">
+            <label>About you</label><textarea name="bio">${esc(me.bio || '')}</textarea>
+            <label><input type="checkbox" name="available" style="width:auto" ${me.available ? 'checked' : ''}> I'm currently available for new jobs</label>
+            <p><button class="btn">Save profile</button></p>
+          </form>
+        </div>`;
+    } else if (S.ptab === 'portfolio') {
+      const canPost = me.status === 'pending' || me.status === 'approved';
+      const works = painterWorks(me.id);
+      body = `
+        <div class="card"><h2>Post new work</h2>
+          ${canPost ? `
+          <form data-form="work">
+            <label>Title</label><input name="title" required placeholder="e.g. Hotel lobby repaint">
+            <label>Description</label><textarea name="desc"></textarea>
+            <label>Picture</label><input name="image" type="file" accept="image/*" required>
+            <p><button class="btn">Post work</button></p>
+          </form>` : '<p class="muted">Pay the listing fee first to post your work.</p>'}
+        </div>
+        <div class="card"><h2>My posted work (${works.length})</h2>
+          ${works.length ? `<div class="gallery">${works.map((w) => `
+            <div class="shot"><img src="${w.image}" alt=""><button class="btn bad small del" data-act="del-work" data-id="${w.id}">✕</button><div class="cap"><strong>${esc(w.title)}</strong></div></div>`).join('')}</div>` : '<p class="muted">Nothing posted yet.</p>'}
+        </div>`;
+    } else {
+      const leads = db.bookings.filter((b) => b.painterId === me.id).sort((a, b) => b.createdAt - a.createdAt);
+      body = `<div class="card"><h2>Job requests</h2>
+        ${leads.length ? leads.map((b) => {
+          const c = userById(b.clientId);
+          return `<div style="border-bottom:1px solid var(--line);padding:10px 0">
+            <strong>${esc(c?.name || 'Client')}</strong> <span class="muted">· ${fmtDate(b.createdAt)}</span><br>
+            <span class="badge">${esc(b.jobType)}</span> ${esc(b.location)}<br>
+            <span class="muted">${esc(b.details)}</span><br>
+            <i class="fa-solid fa-phone"></i> ${esc(c?.phone || '—')} · <i class="fa-solid fa-envelope"></i> ${esc(c?.email || '—')}</div>`;
+        }).join('') : '<p class="muted">No requests yet. Clients who pay to contact you will appear here.</p>'}
+      </div>`;
+    }
+
+    return `
+      <h1>Painter dashboard</h1>
+      <div class="tabs">${tabs.map(([k, l]) => `<button class="tab ${S.ptab === k ? 'active' : ''}" data-act="ptab" data-v="${k}">${l}</button>`).join('')}</div>
+      ${body}`;
+  }
+
+  function viewAdmin() {
+    const tabs = [['overview', 'Overview'], ['painters', 'Painters'], ['clients', 'Clients'], ['payments', 'Payments'], ['bookings', 'Bookings'], ['settings', 'Settings']];
+    const painters = db.users.filter((u) => u.role === 'painter');
+    const clients = db.users.filter((u) => u.role === 'client');
+    const total = (type) => db.payments.filter((p) => !type || p.type === type).reduce((s, p) => s + p.amount, 0);
+    let body = '';
+
+    if (S.atab === 'overview') {
+      const pending = painters.filter((p) => p.status === 'pending');
+      body = `
+        <div class="stats">
+          <div class="stat"><div class="num">${money(total())}</div><div class="lbl">Total money received</div></div>
+          <div class="stat"><div class="num">${money(total('painter_fee'))}</div><div class="lbl">Painter listing fees</div></div>
+          <div class="stat"><div class="num">${money(total('booking'))}</div><div class="lbl">Client booking fees</div></div>
+          <div class="stat"><div class="num">${painters.length}</div><div class="lbl">Painters (${painters.filter((p) => p.status === 'approved').length} approved)</div></div>
+          <div class="stat"><div class="num">${clients.length}</div><div class="lbl">Clients</div></div>
+          <div class="stat"><div class="num">${db.bookings.length}</div><div class="lbl">Bookings</div></div>
+        </div>
+        <div class="card"><h2>Waiting for approval (${pending.length})</h2>
+          ${pending.length ? pending.map((p) => `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);flex-wrap:wrap">
+            <div><strong>${esc(p.name)}</strong> <span class="muted">${esc(p.email)}</span></div>
+            <div><button class="btn small secondary" data-act="open-painter" data-id="${p.id}">View</button>
+            <button class="btn small ok" data-act="approve" data-id="${p.id}">Approve</button>
+            <button class="btn small bad" data-act="dismiss" data-id="${p.id}">Dismiss</button></div></div>`).join('') : '<p class="muted">Nobody is waiting.</p>'}
+        </div>`;
+    } else if (S.atab === 'painters') {
+      body = `<div class="card table-wrap"><h2>Painters</h2><table>
+        <tr><th>Name</th><th>Contact</th><th>Fee paid</th><th>Status</th><th>Works</th><th>Actions</th></tr>
+        ${painters.map((p) => {
+          const paid = db.payments.some((x) => x.type === 'painter_fee' && x.painterId === p.id);
+          const acts = [`<button class="btn small secondary" data-act="open-painter" data-id="${p.id}">View</button>`];
+          if (p.status !== 'approved' && paid) acts.push(`<button class="btn small ok" data-act="approve" data-id="${p.id}">${p.status === 'dismissed' ? 'Reinstate' : 'Approve'}</button>`);
+          if (p.status !== 'dismissed') acts.push(`<button class="btn small bad" data-act="dismiss" data-id="${p.id}">Dismiss</button>`);
+          return `<tr><td><strong>${esc(p.name)}</strong></td><td>${esc(p.email)}<br><span class="muted">${esc(p.phone)}</span></td>
+            <td>${paid ? '<span class="badge ok">Paid</span>' : '<span class="badge">Not paid</span>'}</td>
+            <td>${statusBadge(p.status)}</td><td>${painterWorks(p.id).length}</td><td>${acts.join(' ')}</td></tr>`;
+        }).join('')}
+      </table></div>`;
+    } else if (S.atab === 'clients') {
+      body = `<div class="card table-wrap"><h2>Clients</h2><table>
+        <tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th><th>Bookings</th><th>Spent</th></tr>
+        ${clients.map((c) => `<tr><td>${esc(c.name)}</td><td>${esc(c.email)}</td><td>${esc(c.phone)}</td><td>${c.joined ? fmtDate(c.joined) : '—'}</td>
+          <td>${db.bookings.filter((b) => b.clientId === c.id).length}</td>
+          <td>${money(db.payments.filter((p) => p.payerId === c.id).reduce((s, p) => s + p.amount, 0))}</td></tr>`).join('') || '<tr><td colspan="6" class="muted">No clients yet.</td></tr>'}
+      </table></div>`;
+    } else if (S.atab === 'payments') {
+      const list = [...db.payments].sort((a, b) => b.createdAt - a.createdAt);
+      body = `<div class="card table-wrap"><h2>Payments received — ${money(total())}</h2><table>
+        <tr><th>Date</th><th>Type</th><th>Paid by</th><th>For painter</th><th>Amount</th><th>Method</th><th>Ref</th></tr>
+        ${list.map((p) => `<tr><td>${fmtDate(p.createdAt)}</td>
+          <td><span class="badge ${p.type === 'painter_fee' ? 'warn' : 'ok'}">${p.type === 'painter_fee' ? 'Listing fee' : 'Booking fee'}</span></td>
+          <td>${esc(userById(p.payerId)?.name || '—')}</td><td>${esc(userById(p.painterId)?.name || '—')}</td>
+          <td><strong>${money(p.amount)}</strong></td><td>${esc(p.detail)}</td><td class="muted">${esc(p.ref)}</td></tr>`).join('')}
+      </table></div>`;
+    } else if (S.atab === 'bookings') {
+      const list = [...db.bookings].sort((a, b) => b.createdAt - a.createdAt);
+      body = `<div class="card table-wrap"><h2>Bookings</h2><table>
+        <tr><th>Date</th><th>Client</th><th>Painter</th><th>Job</th><th>Fee</th></tr>
+        ${list.map((b) => `<tr><td>${fmtDate(b.createdAt)}</td><td>${esc(userById(b.clientId)?.name)}</td><td>${esc(userById(b.painterId)?.name)}</td>
+          <td>${esc(b.jobType)} — ${esc(b.location)}</td><td>${money(b.fee)}</td></tr>`).join('') || '<tr><td colspan="5" class="muted">No bookings yet.</td></tr>'}
+      </table></div>`;
+    } else {
+      body = `<div class="card"><h2>Settings</h2>
+        <form data-form="settings">
+          <div class="row">
+            <div><label>Painter listing fee ($)</label><input name="painterFee" type="number" min="0" step="0.01" value="${db.settings.painterFee}"></div>
+            <div><label>Client booking fee ($)</label><input name="bookingFee" type="number" min="0" step="0.01" value="${db.settings.bookingFee}"></div>
+          </div>
+          <p><button class="btn">Save settings</button> <button type="button" class="btn secondary" data-act="reset">Reset demo data</button></p>
+        </form></div>`;
+    }
+
+    return `<h1>Admin panel</h1>
+      <div class="tabs">${tabs.map(([k, l]) => `<button class="tab ${S.atab === k ? 'active' : ''}" data-act="atab" data-v="${k}">${l}</button>`).join('')}</div>
+      ${body}`;
+  }
+
+  function renderNav(u) {
+    const nav = $('#nav');
+    if (!u) { nav.innerHTML = ''; return; }
+    let links = '';
+    if (u.role === 'client') links = `<button class="btn secondary small" data-act="go" data-v="browse">Find painters</button><button class="btn secondary small" data-act="go" data-v="bookings">My bookings</button>`;
+    if (u.role === 'painter') links = `<button class="btn secondary small" data-act="go" data-v="pdash">Dashboard</button>`;
+    if (u.role === 'admin') links = `<button class="btn secondary small" data-act="go" data-v="admin">Admin panel</button><button class="btn secondary small" data-act="go" data-v="browse">Browse as client</button>`;
+    nav.innerHTML = `<span>${esc(u.name)} · ${u.role}</span>${links}<button class="btn secondary small" data-act="logout">Log out</button>`;
+  }
+
+  function render() {
+    const u = sessionUser();
+    if (!u) S.view = 'auth';
+    else if (S.view === 'auth') S.view = defaultView(u);
+
+    const allowed = { client: ['browse', 'painter', 'bookings'], painter: ['pdash', 'painter'], admin: ['admin', 'browse', 'painter'] };
+    if (u && !allowed[u.role].includes(S.view)) S.view = defaultView(u);
+
+    renderNav(u);
+    let html = '';
+    switch (S.view) {
+      case 'auth': html = viewAuth(); break;
+      case 'browse': html = viewBrowse(); break;
+      case 'painter': html = viewPainter(S.param); break;
+      case 'bookings': html = viewBookings(); break;
+      case 'pdash': html = viewPainterDash(); break;
+      case 'admin': html = viewAdmin(); break;
+    }
+    $('#app').innerHTML = html;
+  }
+
+  let payCtx = null;
+  const luhn = (n) => { let s = 0, alt = false; for (let i = n.length - 1; i >= 0; i--) { let d = +n[i]; if (alt) { d *= 2; if (d > 9) d -= 9; } s += d; alt = !alt; } return s % 10 === 0; };
+
+  function openPay(ctx) { payCtx = { ...ctx, method: 'card' }; renderPay(); }
+  function renderPay() {
+    const c = payCtx; if (!c) return;
+    showModal(`
+      <h2>Pay ${money(c.amount)}</h2>
+      <p class="muted">${esc(c.title)}<br>Payment goes to Painter Corp (admin).</p>
+      <div class="pay-methods">
+        <button type="button" class="tab ${c.method === 'card' ? 'active' : ''}" data-act="pay-method" data-v="card">💳 Credit / debit card</button>
+        <button type="button" class="tab ${c.method === 'mobile' ? 'active' : ''}" data-act="pay-method" data-v="mobile">📱 Mobile money</button>
+      </div>
+      <form data-form="pay">
+        ${c.method === 'card' ? `
+          <label>Name on card</label><input name="cardName" required autocomplete="off">
+          <label>Card number</label><input name="cardNo" id="cc" inputmode="numeric" placeholder="4242 4242 4242 4242" required autocomplete="off">
+          <div class="row">
+            <div><label>Expiry (MM/YY)</label><input name="exp" id="exp" placeholder="12/29" required autocomplete="off"></div>
+            <div><label>CVV</label><input name="cvv" inputmode="numeric" maxlength="4" placeholder="123" required autocomplete="off"></div>
+          </div>
+          <div class="hint">Test mode: use card 4242 4242 4242 4242, any future expiry, any 3-digit CVV. Card details are never saved.</div>`
+        : `
+          <label>Provider</label>
+          <select name="provider"><option>MTN Mobile Money</option><option>Airtel Money</option><option>M-Pesa</option><option>Other mobile money</option></select>
+          <label>Mobile money number</label><input name="momoNo" inputmode="tel" placeholder="0700 000 000" required>
+          <div class="hint">Test mode: no real request is sent. In production, a prompt would appear on this phone to approve the payment.</div>`}
+        <p style="display:flex;gap:8px;margin-top:16px"><button class="btn" id="payBtn" style="flex:1">Pay ${money(c.amount)}</button>
+        <button type="button" class="btn secondary" data-act="close-modal">Cancel</button></p>
+      </form>`);
+  }
+
+  function finishPay(f) {
+    const c = payCtx; const d = Object.fromEntries(new FormData(f));
+    let detail;
+    if (c.method === 'card') {
+      const num = (d.cardNo || '').replace(/\s+/g, '');
+      if (!/^\d{13,19}$/.test(num) || !luhn(num)) return toast('Card number is not valid.', true);
+      const m = (d.exp || '').match(/^(\d{2})\/(\d{2})$/);
+      if (!m || +m[1] < 1 || +m[1] > 12) return toast('Expiry must look like MM/YY.', true);
+      const expDate = new Date(2000 + +m[2], +m[1], 1);
+      if (expDate <= new Date()) return toast('This card has expired.', true);
+      if (!/^\d{3,4}$/.test(d.cvv || '')) return toast('CVV must be 3 or 4 digits.', true);
+      const brand = num[0] === '4' ? 'Visa' : num[0] === '5' ? 'Mastercard' : 'Card';
+      detail = `${brand} •••• ${num.slice(-4)}`;
+    } else {
+      const ph = (d.momoNo || '').replace(/[^\d]/g, '');
+      if (ph.length < 9) return toast('Enter a valid mobile money number.', true);
+      detail = `${d.provider} •••• ${ph.slice(-4)}`;
+    }
+    const btn = $('#payBtn'); btn.disabled = true; btn.textContent = 'Processing…';
+    setTimeout(() => {
+      const payment = { id: 'pay_' + uid(), type: c.type, payerId: sessionUser().id, painterId: c.painterId, amount: c.amount, method: c.method, detail, ref: 'PC-' + uid().toUpperCase(), status: 'received', createdAt: Date.now() };
+      db.payments.push(payment);
+      const done = c.onSuccess;
+      closeModal();
+      done(payment);
+      save();
+      render();
+    }, 900);
+  }
+
+  const actions = {
+    'auth-tab': (el) => { S.authTab = el.dataset.v; render(); },
+    'go': (el) => go(el.dataset.v),
+    'back': () => go(defaultView(sessionUser())),
+    'logout': () => { localStorage.removeItem(SESSION_KEY); S.view = 'auth'; S.authTab = 'login'; render(); },
+    'open-painter': (el) => go('painter', el.dataset.id),
+    'ptab': (el) => { S.ptab = el.dataset.v; render(); },
+    'atab': (el) => { S.atab = el.dataset.v; render(); },
+    'approve': (el) => { const p = userById(el.dataset.id); p.status = 'approved'; save(); toast(`${p.name} approved.`); render(); },
+    'dismiss': (el) => { const p = userById(el.dataset.id); if (!confirm(`Dismiss ${p.name}? They will be hidden from clients.`)) return; p.status = 'dismissed'; save(); toast(`${p.name} dismissed.`); render(); },
+    'del-work': (el) => { if (!confirm('Delete this work?')) return; db.works = db.works.filter((w) => w.id !== el.dataset.id); save(); render(); },
+    'zoom': (el) => { const w = db.works.find((x) => x.id === el.dataset.id); showModal(`<img src="${w.image}" style="width:100%;border-radius:10px"><h3 style="margin-top:12px">${esc(w.title)}</h3><p class="muted">${esc(w.desc)}</p><button class="btn secondary" data-act="close-modal">Close</button>`); },
+    'close-modal': () => closeModal(),
+    'pay-method': (el) => { payCtx.method = el.dataset.v; renderPay(); },
+    'reset': (el, e) => { e.preventDefault(); if (!confirm('Reset ALL demo data in this browser?')) return; localStorage.removeItem(SESSION_KEY); db = seed(); save(); S.view = 'auth'; render(); toast('Demo data reset.'); },
+    'pay-listing': () => {
+      const me = sessionUser();
+      openPay({
+        title: 'Painter Corp listing fee', amount: db.settings.painterFee, type: 'painter_fee', painterId: me.id,
+        onSuccess: () => { me.status = 'pending'; toast('Payment received! Waiting for admin approval.'); },
+      });
+    },
+  };
+
+  const forms = {
+    login: (f) => {
+      const d = Object.fromEntries(new FormData(f));
+      const u = db.users.find((x) => x.email.toLowerCase() === d.email.trim().toLowerCase() && x.password === d.password);
+      if (!u) return toast('Wrong email or password.', true);
+      localStorage.setItem(SESSION_KEY, u.id);
+      S.view = defaultView(u); S.ptab = 'overview'; S.atab = 'overview';
+      render(); toast(`Welcome, ${u.name}!`);
+    },
+    register: (f) => {
+      const d = Object.fromEntries(new FormData(f));
+      if (db.users.some((x) => x.email.toLowerCase() === d.email.trim().toLowerCase())) return toast('That email is already registered.', true);
+      const u = { id: 'u_' + uid(), role: d.role, name: d.name.trim(), email: d.email.trim(), phone: d.phone.trim(), password: d.password, joined: Date.now() };
+      if (u.role === 'painter') Object.assign(u, { status: 'unpaid', available: true, location: '', specialties: '', rate: '', bio: '' });
+      db.users.push(u); save();
+      localStorage.setItem(SESSION_KEY, u.id);
+      S.view = defaultView(u); S.ptab = 'overview';
+      render(); toast('Account created!');
+    },
+    profile: (f) => {
+      const me = sessionUser(); const d = new FormData(f);
+      ['name', 'phone', 'location', 'rate', 'specialties', 'bio'].forEach((k) => { me[k] = String(d.get(k) || '').trim(); });
+      me.available = d.get('available') === 'on';
+      save(); toast('Profile saved.'); render();
+    },
+    work: async (f) => {
+      const me = sessionUser(); const file = f.image.files[0];
+      if (!file) return toast('Choose a picture.', true);
+      try {
+        const image = await resizeImage(file);
+        db.works.push({ id: 'w_' + uid(), painterId: me.id, title: f.title.value.trim(), desc: f.desc.value.trim(), image, createdAt: Date.now() });
+        if (save()) { toast('Work posted.'); render(); } else { db.works.pop(); }
+      } catch (e) { toast('Could not read that image.', true); }
+    },
+    hire: (f) => {
+      const me = sessionUser(); const painterId = f.dataset.id; const d = Object.fromEntries(new FormData(f));
+      openPay({
+        title: `Service fee to unlock ${userById(painterId).name}'s contact details`, amount: db.settings.bookingFee, type: 'booking', painterId,
+        onSuccess: (payment) => {
+          db.bookings.push({ id: 'b_' + uid(), clientId: me.id, painterId, jobType: d.jobType, location: d.location.trim(), details: d.details.trim(), fee: payment.amount, paymentId: payment.id, createdAt: Date.now() });
+          toast('Payment received — contact details unlocked!');
+        },
+      });
+    },
+    pay: (f) => finishPay(f),
+    settings: (f) => {
+      const d = Object.fromEntries(new FormData(f));
+      db.settings.painterFee = Math.max(0, +d.painterFee || 0);
+      db.settings.bookingFee = Math.max(0, +d.bookingFee || 0);
+      save(); toast('Settings saved.'); render();
+    },
+  };
+
+  function resizeImage(file, max = 900) {
+    return new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const k = Math.min(1, max / Math.max(img.width, img.height));
+          const c = document.createElement('canvas');
+          c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          resolve(c.toDataURL('image/jpeg', 0.72));
+        };
+        img.onerror = reject; img.src = r.result;
+      };
+      r.onerror = reject; r.readAsDataURL(file);
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target === $('#modal')) return closeModal();
+    const el = e.target.closest('[data-act]');
+    if (el && actions[el.dataset.act]) actions[el.dataset.act](el, e);
+  });
+  document.addEventListener('submit', (e) => {
+    const f = e.target.closest('form[data-form]');
+    if (!f) return;
+    e.preventDefault();
+    forms[f.dataset.form]?.(f);
+  });
+  document.addEventListener('input', (e) => {
+    const t = e.target;
+    if (t.id === 'q') { S.q = t.value; renderGrid(); }
+    if (t.id === 'cc') { t.value = t.value.replace(/\D/g, '').slice(0, 19).replace(/(.{4})/g, '$1 ').trim(); }
+    if (t.id === 'exp') {
+      let v = t.value.replace(/\D/g, '').slice(0, 4);
+      if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+      t.value = v;
+    }
+  });
+  document.addEventListener('change', (e) => {
+    if (e.target.id === 'availOnly') { S.availOnly = e.target.checked; renderGrid(); }
+  });
+  $('#brand').addEventListener('click', () => { const u = sessionUser(); if (u) go(defaultView(u)); });
+
+  render();
+})();
+  </script>
+</body>
+</html>

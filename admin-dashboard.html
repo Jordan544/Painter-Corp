@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Painter Corp</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-wrapper">
+      <h2 class="myheader">Painter Corp [Admin]</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#bookings">Bookings</a></li>
+        <li><a href="#painters">Painters</a></li>
+        <li><a href="#offers">Offers</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="header">
+    <div class="header-wrapper">
+      <div class="header-greet">
+        <h2 id="wlcomeMessage">Welcome back, Admin!</h2>
+        <button type="button" id="logoutbtn" class="btn-danger">Logout</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="dashboard-container">
+    <!-- Manage Bookings Section -->
+    <div class="card full-width" id="bookings">
+      <h3>Client Bookings Management</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Client Name</th>
+            <th>Service Type</th>
+            <th>Date Scheduled</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="adminBookingsList">
+          <tr>
+            <td>John Doe</td>
+            <td>Full Interior Painting</td>
+            <td>2026-10-15</td>
+            <td><span class="badge badge-pending">Pending</span></td>
+            <td>
+              <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Approve</button>
+              <button class="btn btn-danger" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Painters Staff Section -->
+    <div class="card" id="painters">
+      <h3>Painter Crew Status</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Painter Name</th>
+            <th>Specialty</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mike Ross</td>
+            <td>Interior & Trim</td>
+            <td><span style="color: var(--success);">Available</span></td>
+          </tr>
+          <tr>
+            <td>Sarah Jenkins</td>
+            <td>Exterior & Texturing</td>
+            <td><span style="color: var(--danger);">Busy on Site</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Offers Management Section -->
+    <div class="card" id="offers">
+      <h3>Active Company Offers</h3>
+      <form id="offerForm">
+        <div class="form-group">
+          <label for="offerTitle">Offer Description</label>
+          <input type="text" id="offerTitle" placeholder="e.g., 20% off Autumn Painting" required>
+        </div>
+        <button type="submit" class="btn">Publish Offer</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedUser = sessionStorage.getItem('loggedUser');
+      const wlcomeElement = document.getElementById('wlcomeMessage');
+      if(savedUser){
+        wlcomeElement.textContent = `Welcome back, ${savedUser}!`;
+      }
+    });
+
+    document.getElementById('logoutbtn').addEventListener('click', () => {
+      sessionStorage.removeItem('loggedUser');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

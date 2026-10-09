@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard | Painter Corp</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-wrapper">
+      <h2 class="myheader">Painter Corp</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#book">Book Service</a></li>
+        <li><a href="#my-bookings">My Bookings</a></li>
+        <li><a href="#offers">Special Offers</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="header">
+    <div class="header-wrapper">
+      <div class="header-greet">
+        <h2 id="wlcomeMessage">Welcome Guest</h2>
+        <button type="button" id="logoutbtn" class="btn-danger">Logout</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="dashboard-container">
+    <!-- Booking Form Section -->
+    <div class="card" id="book">
+      <h3>Book a Painting Service</h3>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="serviceType">Select Service</label>
+          <select id="serviceType" required>
+            <option value="">-- Choose Option --</option>
+            <option value="Interior">Interior Painting</option>
+            <option value="Exterior">Exterior Painting</option>
+            <option value="Cabinetry">Cabinet Refinishing</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="paintDate">Preferred Date</label>
+          <input type="date" id="paintDate" required>
+        </div>
+        <div class="form-group">
+          <label for="notes">Project Details / Notes</label>
+          <textarea id="notes" rows="3" placeholder="Describe rooms or color preferences..."></textarea>
+        </div>
+        <button type="submit" class="btn">Submit Booking Request</button>
+      </form>
+    </div>
+
+    <!-- Active User Bookings -->
+    <div class="card" id="my-bookings">
+      <h3>My Scheduled Services</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="userBookingsTable">
+          <tr>
+            <td>Interior Painting</td>
+            <td>2026-10-12</td>
+            <td><span class="badge badge-approved">Approved</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Offers Section -->
+    <div class="card full-width" id="offers">
+      <h3>Current Seasonal Promotions</h3>
+      <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Book any complete exterior paint job this month and receive a free pressure wash treatment!</p>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedUser = sessionStorage.getItem('loggedUser');
+      const wlcomeElement = document.getElementById('wlcomeMessage');
+
+      if(savedUser){
+        wlcomeElement.textContent = `Welcome back, ${savedUser}!`;
+      } else {
+        wlcomeElement.textContent = 'Welcome Guest';
+      }
+    });
+
+    document.getElementById('logoutbtn').addEventListener('click', () => {
+      sessionStorage.removeItem('loggedUser');
+      window.location.href = 'login.html';
+    });
+
+    // Simple interaction handling for client booking submission
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Your painting service request has been successfully submitted!');
+      document.getElementById('bookingForm').reset();
+    });
+  </script>
+</body>
+</html>
