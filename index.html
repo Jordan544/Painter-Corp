@@ -47,7 +47,15 @@ nav { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 nav button, nav span { font-size: .9rem; }
 nav span { color: #c9cfdd; margin-right: 6px; }
 
-main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+/* Main content now spans at least 90% of the viewport width */
+main {
+  flex: 1;
+  width: 90%;
+  min-width: 90%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
 .footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 16px; }
 
 h1, h2, h3 { margin: 0 0 12px; }
@@ -154,6 +162,7 @@ th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-s
 @media (max-width: 600px) {
   h1 { font-size: 1.35rem; }
   .topbar { padding: 10px 12px; }
+  main { width: 100%; min-width: 100%; padding: 18px 12px; }
 }
   </style>
 </head>
