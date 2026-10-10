@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jordan Painter Uganda | Professional Painting Services</title>
+  <meta name="description" content="Jordan Painter Uganda — Professional house painting, decoration, and finishing services in Kampala. Find trusted painters near you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f8fafc;
+      --bg-alt: #ffffff;
+      --bg-card: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #172554;
+      --accent: #f59e0b;
+      --accent-light: #fbbf24;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --nav-bg: rgba(255, 255, 255, 0.92);
+      --hero-overlay: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 58, 138, 0.75) 100%);
+    }
+
+    body.dark-mode {
+      --bg: #0a0e17;
+      --bg-alt: #111827;
+      --bg-card: #1a2234;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-light: #64748b;
+      --border: #1e293b;
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --primary-dark: #1e3a8a;
+      --accent: #fbbf24;
+      --accent-light: #fcd34d;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+      --nav-bg: rgba(10, 14, 23, 0.92);
+      --hero-overlay: linear-gradient(135deg, rgba(10, 14, 23, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.4s ease, color 0.4s ease;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, select, textarea { font-family: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ============================================================
+       NAVBAR
+       ============================================================ */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+      flex-shrink: 0;
+    }
+
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-text small {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-menu a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.25s ease;
+      position: relative;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover { color: var(--primary); }
+    .nav-menu a:hover::after { width: 100%; }
+
+    .nav-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--bg-alt);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      background: var(--bg);
+      transform: rotate(15deg) scale(1.05);
+    }
+
+    .theme-toggle svg {
+      position: absolute;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      width: 20px;
+      height: 20px;
+    }
+
+    .icon-sun { opacity: 0; transform: translateY(20px) rotate(-45deg); }
+    .icon-moon { opacity: 1; transform: translateY(0) rotate(0); }
+    body.dark-mode .icon-sun { opacity: 1; transform: translateY(0) rotate(0); }
+    body.dark-mode .icon-moon { opacity: 0; transform: translateY(-20px) rotate(45deg); }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--bg-alt);
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--hero-overlay);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      color: #ffffff;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(251, 191, 36, 0.5);
+      border-radius: 100px;
+      background: rgba(251, 191, 36, 0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 span { color: var(--accent-light); }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0f172a;
+      box-shadow: 0 10px 28px -6px rgba(245, 158, 11, 0.5);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px -6px rgba(245, 158, 11, 0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #ffffff;
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       SECTION SHELL
+       ============================================================ */
+    section { padding: 5rem 0; }
+
+    .section-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       SERVICES
+       ============================================================ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: var(--shadow);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.12), rgba(59, 130, 246, 0.12));
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      margin-bottom: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+
+    /* ============================================================
+       PAINT TYPES (KINDS OF PAINT IN UGANDA)
+       ============================================================ */
+    .paint-types-section { background: var(--bg-alt); }
+
+    .paint-types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .paint-type-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+
+    .paint-type-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .paint-type-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--bg-alt);
+      flex-shrink: 0;
+    }
+
+    .paint-type-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .paint-type-card:hover .paint-type-img img { transform: scale(1.08); }
+
+    .paint-type-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .paint-type-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .paint-type-body p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+
+    .paint-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 100px;
+      padding: 0.3rem 0.8rem;
+      margin-bottom: 0.8rem;
+      align-self: flex-start;
+    }
+
+    /* ============================================================
+       WHERE TO PAINT
+       ============================================================ */
+    .where-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .where-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: all 0.35s ease;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .where-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .where-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .where-card:hover img { transform: scale(1.08); }
+
+    .where-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 35%, rgba(15, 23, 42, 0.92) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.4rem;
+    }
+
+    .where-overlay h4 {
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .where-overlay p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.8rem;
+    }
+
+    /* ============================================================
+       GALLERY
+       ============================================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: all 0.35s ease;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.9) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay h4 { color: #ffffff; font-size: 1.05rem; font-weight: 700; }
+    .gallery-overlay p { color: rgba(255, 255, 255, 0.8); font-size: 0.82rem; margin-top: 0.2rem; }
+
+    /* ============================================================
+       FIND A PAINTER (SEARCH)
+       ============================================================ */
+    .search-section { background: var(--bg-alt); }
+
+    .search-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .search-row input,
+    .search-row select {
+      flex: 1 1 180px;
+      padding: 0.95rem 1.1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      outline: none;
+    }
+
+    .search-row input:focus,
+    .search-row select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+
+    .search-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .search-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .search-results { margin-top: 1.5rem; display: none; }
+    .search-results.show { display: block; }
+
+    .result-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+      transition: all 0.25s ease;
+    }
+
+    .result-item:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .result-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .result-info { flex-grow: 1; min-width: 0; }
+
+    .result-info h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .result-info p { font-size: 0.82rem; color: var(--text-muted); }
+
+    .result-contact {
+      padding: 0.55rem 1.1rem;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: background 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .result-contact:hover { background: var(--primary-light); }
+
+    .no-results {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    /* ============================================================
+       JOIN AS PAINTER
+       ============================================================ */
+    .join-section { background: var(--bg-alt); }
+
+    .join-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(1.75rem, 4vw, 2.75rem);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .join-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .join-card > p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full-width { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      grid-column: 1 / -1;
+      padding: 1.1rem;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -8px rgba(30, 58, 138, 0.5);
+    }
+
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ============================================================
+       WHY CHOOSE US
+       ============================================================ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      transition: all 0.35s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.2rem;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #ffffff;
+      box-shadow: 0 8px 20px -6px rgba(30, 58, 138, 0.4);
+    }
+
+    .feature-item h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact-section { background: var(--bg-alt); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(30, 58, 138, 0.1);
+      border: 1px solid rgba(30, 58, 138, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    body.dark-mode .contact-icon {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: var(--primary-light);
+    }
+
+    .contact-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item p,
+    .contact-item a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.25s ease;
+    }
+
+    .contact-item a:hover { color: var(--primary); }
+
+    .map-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      height: 100%;
+      min-height: 340px;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      border: none;
+      display: block;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background: var(--primary-dark);
+      color: rgba(255, 255, 255, 0.85);
+      padding: 4rem 0 1.5rem;
+    }
+
+    body.dark-mode .footer { background: #050810; }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand .brand-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+
+    .footer-col p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col h5 {
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      padding: 0.3rem 0;
+      transition: color 0.2s ease, padding 0.2s ease;
+    }
+
+    .footer-col a:hover { color: #ffffff; padding-left: 0.3rem; }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .footer-socials { display: flex; gap: 0.75rem; }
+
+    .footer-socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.25s ease;
+    }
+
+    .footer-socials a:hover {
+      color: #ffffff;
+      border-color: var(--accent-light);
+      background: rgba(251, 191, 36, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       FLOATING WHATSAPP
+       ============================================================ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 1500;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 10px 28px -6px rgba(37, 211, 102, 0.55);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 36px -8px rgba(37, 211, 102, 0.7);
+    }
+
+    .whatsapp-float svg { width: 30px; height: 30px; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--nav-bg);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .nav-menu.open { max-height: 500px; }
+
+      .nav-menu a {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.9rem;
+      }
+
+      .nav-menu a::after { display: none; }
+      .menu-btn { display: inline-flex; }
+      .form-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 1.1rem; }
+      .nav-inner { height: 64px; }
+      .brand { font-size: 1rem; }
+      .brand-icon { width: 36px; height: 36px; font-size: 1rem; }
+      section { padding: 3.5rem 0; }
+      .hero { min-height: 85vh; padding: 3rem 1.1rem; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+      .search-box { padding: 1.5rem; }
+      .search-row { flex-direction: column; }
+      .search-row input,
+      .search-row select { flex: 1 1 auto; width: 100%; }
+      .result-item { flex-wrap: wrap; }
+      .result-contact { width: 100%; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .whatsapp-float { bottom: 1.1rem; right: 1.1rem; width: 52px; height: 52px; }
+      .whatsapp-float svg { width: 26px; height: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <div class="brand-icon">JP</div>
+        <div class="brand-text">
+          Jordan Painter
+          <small>Uganda</small>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#services">Services</a>
+        <a href="#paint-types">Paint Types</a>
+        <a href="#where">Where to Paint</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#find">Find a Painter</a>
+        <a href="#join">Join as Painter</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO (Painter image, not mechanics)
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1920&q=80" alt="Professional painter painting a wall">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">Kampala's Trusted Painters</span>
+      <h1>Transform Your Space With <span>Jordan Painter Uganda</span></h1>
+      <p>Professional house painting, decoration, and finishing services. Quality work, clean execution, and beautiful results — every time.</p>
+      <div class="hero-buttons">
+        <a href="#find" class="btn btn-primary">
+          Find a Painter Near You
+        </a>
+        <a href="#join" class="btn btn-outline">
+          Join as a Professional Painter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+       ============================================================ -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">What We Do</div>
+        <h2 class="section-title">Professional Painting Services</h2>
+        <p class="section-sub">From interior walls to exterior finishes, we handle every kind of house painting with precision and care.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Interior House Painting</h3>
+          <p>Complete interior painting for living rooms, bedrooms, kitchens, and offices. We use premium paints and deliver smooth, even finishes that last.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Exterior Painting</h3>
+          <p>Weather-resistant exterior painting for homes, apartments, and commercial buildings. Protect your property while improving its curb appeal.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Decorative & Texture Finishes</h3>
+          <p>Specialty finishes including textured walls, stucco, Venetian plaster, and decorative patterns that turn ordinary walls into works of art.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🖌️</div>
+          <h3>Wallpaper Installation</h3>
+          <p>Professional wallpaper hanging and removal. We help you choose the right patterns and install them perfectly without bubbles or seams.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>Commercial & Office Painting</h3>
+          <p>Fast, clean, and professional painting for offices, shops, schools, and hotels. We work around your schedule to minimize disruption.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Wall Repairs & Preparation</h3>
+          <p>Crack filling, skimming, sanding, and priming. Proper surface preparation is the secret to a paint job that looks great and lasts for years.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚪</div>
+          <h3>Doors, Windows & Trim</h3>
+          <p>Detailed painting for doors, window frames, skirting boards, and trim. The finishing touches that make a home feel complete.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>New Build & Renovation Painting</h3>
+          <p>Full painting services for new constructions and renovation projects. We work with contractors and homeowners from start to finish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TYPES OF PAINT IN UGANDA
+       ============================================================ -->
+  <section id="paint-types" class="paint-types-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Know Your Paint</div>
+        <h2 class="section-title">Types of Paint in Uganda</h2>
+        <p class="section-sub">Different paints for different surfaces. Here are the main types of paint used in Ugandan buildings and homes.</p>
+      </div>
+
+      <div class="paint-types-grid">
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80" alt="Emulsion paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Interior Walls</span>
+            <h3>Emulsion Paint</h3>
+            <p>Water-based paint used for interior walls and ceilings. Easy to apply, quick-drying, and available in matte, silk, or satin finishes. The most common paint for homes in Uganda.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?auto=format&fit=crop&w=800&q=80" alt="Gloss paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Wood & Metal</span>
+            <h3>Gloss Paint</h3>
+            <p>Oil-based paint with a shiny, hard-wearing finish. Used on doors, windows, frames, and metal surfaces. Easy to clean and resistant to moisture and stains.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=800&q=80" alt="Weatherguard exterior paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Exterior Walls</span>
+            <h3>Weatherguard / Exterior Paint</h3>
+            <p>Tough, weather-resistant paint designed for outside walls. Protects against rain, sun, and dust. Essential for Ugandan homes exposed to harsh weather conditions.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Texture paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Decorative</span>
+            <h3>Texture / Decorative Paint</h3>
+            <p>Thick paint used to create patterns, stucco effects, and decorative walls. Popular for feature walls, hotel lobbies, and modern homes in Kampala.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Undercoat primer">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Preparation</span>
+            <h3>Primer / Undercoat</h3>
+            <p>The first coat applied before the main paint. It seals the surface, improves adhesion, and makes the topcoat last longer. Essential for new walls and repairs.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Anti-fungal paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Specialty</span>
+            <h3>Anti-Fungal / Anti-Mould Paint</h3>
+            <p>Special paint that prevents mould, mildew, and fungi growth. Ideal for bathrooms, kitchens, and damp areas of the home. Very useful in Uganda's humid climate.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Roof paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Roofing</span>
+            <h3>Roof Paint</h3>
+            <p>Heat-resistant paint for iron sheets and roof surfaces. Reflects sunlight, reduces indoor heat, and protects the roof from rust and corrosion.</p>
+          </div>
+        </div>
+
+        <div class="paint-type-card">
+          <div class="paint-type-img">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Floor paint">
+          </div>
+          <div class="paint-type-body">
+            <span class="paint-tag">Floors</span>
+            <h3>Floor Paint</h3>
+            <p>Hard-wearing paint for concrete, wooden, and cement floors. Used in garages, verandas, warehouses, and sometimes living spaces for a clean, finished look.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHERE TO PAINT
+       ============================================================ -->
+  <section id="where">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Where Do You Need Painting?</div>
+        <h2 class="section-title">Where to Paint</h2>
+        <p class="section-sub">Whether it's inside, outside, a single room, or a whole building — we connect you with the right painter for the job.</p>
+      </div>
+
+      <div class="where-grid">
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=800&q=80" alt="Inside painting">
+          <div class="where-overlay">
+            <h4>Inside the House</h4>
+            <p>Living rooms, hallways, kitchens, and all interior spaces</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?auto=format&fit=crop&w=800&q=80" alt="Outside painting">
+          <div class="where-overlay">
+            <h4>Outside the House</h4>
+            <p>Exterior walls, compound walls, and building facades</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Single room painting">
+          <div class="where-overlay">
+            <h4>Single Room</h4>
+            <p>One room repaint — quick and affordable</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Bedroom painting">
+          <div class="where-overlay">
+            <h4>Bedroom</h4>
+            <p>Master bedroom, children's room, guest room</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Double room painting">
+          <div class="where-overlay">
+            <h4>Double Room</h4>
+            <p>Two rooms or a double-unit space</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Flat building painting">
+          <div class="where-overlay">
+            <h4>Flat / Apartment Building</h4>
+            <p>Full apartment blocks and multi-unit buildings</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Renovation painting">
+          <div class="where-overlay">
+            <h4>Renovation Project</h4>
+            <p>Full repaint of old buildings and renovations</p>
+          </div>
+        </div>
+
+        <div class="where-card">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Office and commercial painting">
+          <div class="where-overlay">
+            <h4>Office / Commercial Space</h4>
+            <p>Offices, shops, schools, and hotels</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY
+       ============================================================ -->
+  <section id="gallery" style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Our Work</div>
+        <h2 class="section-title">Recent Projects Gallery</h2>
+        <p class="section-sub">A look at some of the spaces we've transformed across Kampala and beyond.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=800&q=80" alt="Modern living room painting">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Modern Living Room</h4>
+              <p>Interior Painting — Kololo</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?auto=format&fit=crop&w=800&q=80" alt="Exterior house painting">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Residential Exterior</h4>
+              <p>Exterior Painting — Muyenga</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=800&q=80" alt="Decorative wall finish">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Decorative Texture Wall</h4>
+              <p>Specialty Finish — Naguru</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Office painting">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Corporate Office Space</h4>
+              <p>Commercial Painting — Nakasero</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Bedroom painting">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Master Bedroom</h4>
+              <p>Interior Painting — Ntinda</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Kitchen painting">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Modern Kitchen</h4>
+              <p>Interior Painting — Bugolobi</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Wallpaper installation">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Wallpaper Feature Wall</h4>
+              <p>Wallpaper Installation — Munyonyo</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Exterior compound wall">
+          <div class="gallery-overlay">
+            <div>
+              <h4>Compound Perimeter Wall</h4>
+              <p>Exterior Painting — Najjera</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FIND A PAINTER (SEARCH)
+       ============================================================ -->
+  <section id="find" class="search-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Hire a Professional</div>
+        <h2 class="section-title">Find a Painter Near You</h2>
+        <p class="section-sub">Search by area, specialty, and where you need the painting done. We will connect you with a trusted Jordan Painter Uganda professional.</p>
+      </div>
+
+      <div class="search-box">
+        <div class="search-row">
+          <input type="text" id="searchArea" placeholder="Enter your area (e.g. Ntinda, Kololo, Muyenga)">
+          <select id="searchSpecialty">
+            <option value="">All Specialties</option>
+            <option value="Interior Painting">Interior Painting</option>
+            <option value="Exterior Painting">Exterior Painting</option>
+            <option value="Decorative Finishes">Decorative Finishes</option>
+            <option value="Wallpaper Installation">Wallpaper Installation</option>
+            <option value="Commercial Painting">Commercial Painting</option>
+            <option value="Wall Repairs">Wall Repairs</option>
+          </select>
+        </div>
+
+        <div class="search-row">
+          <select id="searchWhere">
+            <option value="">Where do you need painting? (Select any)</option>
+            <option value="Inside the House">Inside the House</option>
+            <option value="Outside the House">Outside the House</option>
+            <option value="Single Room">Single Room</option>
+            <option value="Bedroom">Bedroom</option>
+            <option value="Double Room">Double Room</option>
+            <option value="Flat / Apartment Building">Flat / Apartment Building</option>
+            <option value="Renovation Project">Renovation Project</option>
+            <option value="Office / Commercial Space">Office / Commercial Space</option>
+          </select>
+        </div>
+
+        <button class="search-btn" id="searchBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          Search Painters
+        </button>
+
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY CHOOSE US
+       ============================================================ -->
+  <section id="why">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Why Jordan Painter</div>
+        <h2 class="section-title">Quality You Can See, Service You Can Trust</h2>
+        <p class="section-sub">We are not just painters — we are craftsmen committed to transforming your space with care and precision.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <h3>Vetted Professionals</h3>
+          <p>Every painter on our platform is experienced, verified, and committed to delivering excellent work.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⏱️</div>
+          <h3>On-Time Delivery</h3>
+          <p>We respect your time. Projects are completed on schedule without cutting corners.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💎</div>
+          <h3>Premium Materials</h3>
+          <p>We use only high-quality paints and materials that last longer and look better.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🧹</div>
+          <h3>Clean & Tidy</h3>
+          <p>We protect your furniture and floors, and leave your space spotless after every job.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <h3>Fair Pricing</h3>
+          <p>Transparent quotes with no hidden charges. You know exactly what you are paying for.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🛡️</div>
+          <h3>Workmanship Guarantee</h3>
+          <p>We stand behind our work. If something is not right, we come back and fix it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       JOIN AS PAINTER
+       ============================================================ -->
+  <section id="join" class="join-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">For Professional Painters</div>
+        <h2 class="section-title">Join Our Network of Painters</h2>
+        <p class="section-sub">Are you a skilled painter in Uganda? Subscribe to Jordan Painter Uganda and get connected with clients in your area.</p>
+      </div>
+
+      <div class="join-card">
+        <h3>Painter Subscription Form</h3>
+        <p>Fill in your details below. Once approved, your profile will appear in our "Find a Painter" directory so clients near you can contact you directly.</p>
+
+        <form id="painterForm" action="https://formspree.io/f/mnpngrzg" method="POST">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="painterName">Full Name</label>
+              <input type="text" id="painterName" name="name" placeholder="e.g. John Ssemakula" required>
+            </div>
+
+            <div class="form-group">
+              <label for="painterPhone">Phone Number</label>
+              <input type="tel" id="painterPhone" name="phone" placeholder="e.g. 0789 123 456" required>
+            </div>
+
+            <div class="form-group">
+              <label for="painterEmail">Email Address</label>
+              <input type="email" id="painterEmail" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="painterArea">Area of Operation</label>
+              <input type="text" id="painterArea" name="area" placeholder="e.g. Ntinda, Kireka, Wakiso" required>
+            </div>
+
+            <div class="form-group">
+              <label for="painterSpecialty">Primary Specialty</label>
+              <select id="painterSpecialty" name="specialty" required>
+                <option value="">Select specialty</option>
+                <option>Interior Painting</option>
+                <option>Exterior Painting</option>
+                <option>Decorative Finishes</option>
+                <option>Wallpaper Installation</option>
+                <option>Commercial Painting</option>
+                <option>Wall Repairs</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="painterWhere">Where Do You Paint?</label>
+              <select id="painterWhere" name="where" required>
+                <option value="">Select where you paint</option>
+                <option>Inside the House</option>
+                <option>Outside the House</option>
+                <option>Single Room</option>
+                <option>Bedroom</option>
+                <option>Double Room</option>
+                <option>Flat / Apartment Building</option>
+                <option>Renovation Project</option>
+                <option>Office / Commercial Space</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="painterExperience">Years of Experience</label>
+              <select id="painterExperience" name="experience" required>
+                <option value="">Select experience</option>
+                <option>1–2 years</option>
+                <option>3–5 years</option>
+                <option>6–10 years</option>
+                <option>10+ years</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="painterAbout">Tell Us About Yourself</label>
+              <textarea id="painterAbout" name="about" placeholder="Describe your skills, past projects, and what makes you a great painter..." required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit" id="painterSubmit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              <span>Subscribe as a Painter</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Get in Touch</div>
+        <h2 class="section-title">Contact Jordan Painter Uganda</h2>
+        <p class="section-sub">We are based in Mundudwe, Kampala. Reach out for a free quote or to ask any questions.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Reach Us Today</h3>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>Mundudwe, Kampala, Uganda</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h4>Phone / WhatsApp</h4>
+              <a href="tel:+256789123456">+256 789 123 456</a><br>
+              <a href="tel:+256701123456">+256 701 123 456</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:info@jordanpainteruganda.com">info@jordanpainteruganda.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <h4>Working Hours</h4>
+              <p>Monday – Saturday: 7:00 AM – 7:00 PM<br>Sunday: By appointment</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrapper">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7576!2d32.5825!3d0.3476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMjAnNTEuNCJOIDMywrAzNCc1Ny4wIkU!5e0!3m2!1sen!2sug!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Jordan Painter Uganda Location"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <div class="brand-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">JP</div>
+            <span>Jordan Painter Uganda</span>
+          </div>
+          <p>Professional house painting, decoration, and finishing services in Kampala and across Uganda. Quality work, fair prices, beautiful results.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="#services">Interior Painting</a>
+          <a href="#services">Exterior Painting</a>
+          <a href="#services">Decorative Finishes</a>
+          <a href="#services">Wallpaper Installation</a>
+          <a href="#services">Commercial Painting</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <a href="#find">Find a Painter</a>
+          <a href="#join">Join as Painter</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#why">Why Choose Us</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="tel:+256789123456">+256 789 123 456</a>
+          <a href="mailto:info@jordanpainteruganda.com">info@jordanpainteruganda.com</a>
+          <a href="#contact">Mundudwe, Kampala, Uganda</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Jordan Painter Uganda. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/256789123456" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.68 0-3.24-.5-4.55-1.36l-.32-.2-3.01.79.8-2.93-.21-.32A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
+    </svg>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    /* THEME TOGGLE */
+    (function initTheme() {
+      const saved = localStorage.getItem('jp-theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (saved === 'dark-mode' || (!saved && !prefersLight)) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('jp-theme', isDark ? 'dark-mode' : 'light-mode');
+    });
+
+    /* MOBILE MENU */
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    menuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('#navMenu a').forEach(link => {
+      link.addEventListener('click', () => navMenu.classList.remove('open'));
+    });
+
+    /* PAINTER DIRECTORY DATA */
+    const painters = [
+      { name: 'John Ssemakula', area: 'Ntinda', specialty: 'Interior Painting', where: 'Inside the House', phone: '+256789111222' },
+      { name: 'Moses Kigongo', area: 'Kololo', specialty: 'Exterior Painting', where: 'Outside the House', phone: '+256789222333' },
+      { name: 'Sarah Nakato', area: 'Muyenga', specialty: 'Decorative Finishes', where: 'Bedroom', phone: '+256789333444' },
+      { name: 'David Ochieng', area: 'Bugolobi', specialty: 'Wallpaper Installation', where: 'Single Room', phone: '+256789444555' },
+      { name: 'Grace Auma', area: 'Najjera', specialty: 'Commercial Painting', where: 'Office / Commercial Space', phone: '+256789555666' },
+      { name: 'Peter Mubiru', area: 'Nakasero', specialty: 'Wall Repairs', where: 'Renovation Project', phone: '+256789666777' },
+      { name: 'Ronald Ssekandi', area: 'Mundudwe', specialty: 'Interior Painting', where: 'Double Room', phone: '+256789777888' },
+      { name: 'Josephine Nalubega', area: 'Kireka', specialty: 'Exterior Painting', where: 'Flat / Apartment Building', phone: '+256789888999' },
+      { name: 'Ibrahim Kakooza', area: 'Ntinda', specialty: 'Decorative Finishes', where: 'Inside the House', phone: '+256789999000' },
+      { name: 'Alice Nabirye', area: 'Wakiso', specialty: 'Wallpaper Installation', where: 'Bedroom', phone: '+256789000111' }
+    ];
+
+    /* SEARCH PAINTERS */
+    const searchBtn = document.getElementById('searchBtn');
+    const searchArea = document.getElementById('searchArea');
+    const searchSpecialty = document.getElementById('searchSpecialty');
+    const searchWhere = document.getElementById('searchWhere');
+    const searchResults = document.getElementById('searchResults');
+
+    searchBtn.addEventListener('click', () => {
+      const areaQuery = searchArea.value.trim().toLowerCase();
+      const specialtyQuery = searchSpecialty.value;
+      const whereQuery = searchWhere.value;
+
+      const matches = painters.filter(p => {
+        const areaMatch = !areaQuery || p.area.toLowerCase().includes(areaQuery);
+        const specialtyMatch = !specialtyQuery || p.specialty === specialtyQuery;
+        const whereMatch = !whereQuery || p.where === whereQuery;
+        return areaMatch && specialtyMatch && whereMatch;
+      });
+
+      searchResults.classList.add('show');
+
+      if (matches.length === 0) {
+        searchResults.innerHTML = `
+          <div class="no-results">
+            <p>No painters found matching your search.</p>
+            <p style="font-size:0.85rem;margin-top:0.5rem;">Try a different area, specialty, or location, or <a href="#join" style="color:var(--primary);font-weight:700;">join as a painter</a>.</p>
+          </div>
+        `;
+        return;
+      }
+
+      searchResults.innerHTML = matches.map(p => `
+        <div class="result-item">
+          <div class="result-avatar">${p.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</div>
+          <div class="result-info">
+            <h4>${p.name}</h4>
+            <p>${p.specialty} • ${p.where} • ${p.area}, Kampala</p>
+          </div>
+          <a href="tel:${p.phone}" class="result-contact">Contact</a>
+        </div>
+      `).join('');
+    });
+
+    searchArea.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') searchBtn.click();
+    });
+
+    /* PAINTER SUBSCRIPTION FORM */
+    const painterForm = document.getElementById('painterForm');
+    const painterSubmit = document.getElementById('painterSubmit');
+
+    painterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const btnLabel = painterSubmit.querySelector('span');
+      const originalText = btnLabel.textContent;
+
+      painterSubmit.disabled = true;
+      btnLabel.textContent = 'Submitting...';
+
+      const formData = new FormData(painterForm);
+
+      try {
+        const response = await fetch(painterForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          alert('Thank you! Your painter subscription has been received. We will review your profile and add you to our directory shortly.');
+          painterForm.reset();
+        } else {
+          const errorData = await response.json();
+          alert('Oops! Something went wrong: ' + (errorData.error || 'Please try again.'));
+        }
+      } catch (error) {
+        alert('Network error. Please check your connection and try again.');
+      } finally {
+        painterSubmit.disabled = false;
+        btnLabel.textContent = originalText;
+      }
+    });
+  </script>
+</body>
+</html>
